@@ -42,10 +42,14 @@ const displayList = function() {
       <p>${element.id}</p>
       </div>
       <div>
-      <p>${element.taskName}</p>
+      <p>${element.status ? "✅" : "❌"}</p>
       </div>
       <div>
-      <p>${element.status ? "✅" : "❌"}</p>
+      <p>${element.taskName}</p>
+      </div>
+     
+      <div>
+      <button class="edit" data-index="${index}">Edit <i class="fa-solid fa-pen"></i></button>
       </div>
       <div>
       <button class="remove" data-index="${index}">Remove <i class="fa-solid fa-trash"></i></button>
@@ -55,18 +59,15 @@ const displayList = function() {
   });
 
   const removeButtons = document.querySelectorAll('.remove');
-  removeButtons.forEach(button => {
+  removeButtons.forEach((button, index) => {
     button.addEventListener('click', function() {
-      const index = this.getAttribute('data-index'); // Get the index of the task
-      todoList.splice(index, 1); // Remove the task from the list
-      displayList(); // Re-render the list
+      todoList.splice(index, 1); 
+      displayList(); 
     });
   });
 };
 
 displayList();
-
-
 const addBtn = document.querySelector('.addtaskBtn')
 const addtaskInput = document.getElementById('addtaskInput')
 const check = document.getElementById('check')
@@ -80,7 +81,8 @@ const addEvent = function(){
       taskName: addtaskInput.value,
       status: check.checked, 
     };
-    
+    addtaskInput.value = ""
+    check.checked = false
     todoList.push(arr);
     displayList(); 
     console.log(arr);
