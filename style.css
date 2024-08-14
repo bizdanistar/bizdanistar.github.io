@@ -7,6 +7,7 @@
   --navColor3: #aa6e39;
   --navColor4: #236267;
   --navColor5: #2c8437;
+  --navColor6: #2c3f84;
 }
 
 html {
@@ -59,7 +60,7 @@ nav ul {
 }
 
 nav ul li {
-  height: 20%;
+  height: 16.6%;
   overflow: hidden;
 }
 
@@ -132,6 +133,9 @@ nav li:nth-of-type(5) {
 
 .slide-in-5 {
   animation: slide-in 0.4s linear 1s both;
+}
+.slide-in-6 {
+  animation: slide-in 0.4s linear 1.2s both;
 }
 
 @keyframes slide-in {
@@ -258,11 +262,23 @@ section#projects {
 section#contact {
   background-color: var(--navColor5);
 }
+section#homework {
+  background-color: var(--navColor6);
+}
 
 .titleMain{
   background-color: rgba(0, 0, 0, 0.7);
   text-align:center; font-size:90px; text-transform:uppercase; color:#f45c5c; letter-spacing:1px;
   font-family:"Playfair Display", serif; font-weight:400;
+}
+
+.linkHW{
+  color: #fff;
+  font-size: 20px;
+  list-style: none;
+}
+a{
+  text-decoration: none;
 }
 
 /* Media Query: Large Smartphone (Vertical) */

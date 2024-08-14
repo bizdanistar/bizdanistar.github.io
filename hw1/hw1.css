@@ -1,0 +1,80 @@
+body{
+  padding: 0%;
+  margin: 0%;
+  display: flex;
+background-color: rgb(225, 225, 225);
+justify-content: center;
+align-items: center;
+}
+
+.main{
+  
+  background-color: #fff;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+border-radius: 5px;
+margin-top: 10%;
+}
+.addtaskBtn{
+  width: 90px;
+  height: 25px;
+  color: rgb(83, 118, 243);
+  border: 1px solid rgb(83, 118, 243);
+  border-radius: 5cqb;
+  cursor: pointer;
+}
+#addtaskInput {
+ 
+  border:1px solid #989797;
+  border-radius: 8px;
+  height: 23px;
+  width: 300px;
+  
+}
+#check{
+  height: 23px;
+  width: 50px;
+}
+.inputField{
+ margin-top: 2%;
+margin-bottom: 2%; 
+display: flex;
+}
+
+
+.title {
+  display: flex;
+}
+.task {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  width: 90vw;
+}
+.task1{
+  display: grid;
+  grid-template-columns: 5% 50% 10% 15%;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid rgb(183, 183, 183); 
+}
+.remove{
+  width: 90px;
+  height: 25px;
+  color: rgb(83, 118, 243);
+  border: 1px solid rgb(83, 118, 243);
+  border-radius: 5cqb;
+  cursor: pointer;
+  
+}
+.remove:hover{
+  filter: brightness(110%);
+}
+p{
+  color: #444444;
+  font-size: 16px;
+  
+}
