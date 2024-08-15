@@ -113,6 +113,9 @@ nav li:nth-of-type(4) {
 nav li:nth-of-type(5) {
   background-color: var(--navColor5);
 }
+nav li:nth-of-type(6) {
+  background-color: var(--navColor6);
+}
 
 /* Slide in animation with delay for each */
 .slide-in-1 {
@@ -150,22 +153,25 @@ nav li:nth-of-type(5) {
 
 /* Slide out animation with delay for each */
 .slide-out-1 {
-  animation: slide-out 0.3s linear 0.5s both;
+  animation: slide-out 0.3s linear 0.6s both;
 }
 
 .slide-out-2 {
-  animation: slide-out 0.3s linear 0.4s both;
+  animation: slide-out 0.3s linear 0.5s both;
 }
 
 .slide-out-3 {
-  animation: slide-out 0.3s linear 0.3s both;
+  animation: slide-out 0.3s linear 0.4s both;
 }
 
 .slide-out-4 {
-  animation: slide-out 0.3s linear 0.2s both;
+  animation: slide-out 0.3s linear 0.3s both;
 }
 
 .slide-out-5 {
+  animation: slide-out 0.3s linear 0.2s both;
+}
+.slide-out-6 {
   animation: slide-out 0.3s linear 0.1s both;
 }
 
@@ -264,11 +270,18 @@ section#contact {
 }
 section#homework {
   background-color: var(--navColor6);
+  display: flex;
+  flex-direction: column;
 }
 
 .titleMain{
   background-color: rgba(0, 0, 0, 0.7);
-  text-align:center; font-size:90px; text-transform:uppercase; color:#f45c5c; letter-spacing:1px;
+  text-align:center; 
+  font-size:90px; 
+  text-transform:uppercase; 
+  /* color:#f45c5c;  */
+  color: #fff;
+  letter-spacing:1px;
   font-family:"Playfair Display", serif; font-weight:400;
 }
 
@@ -276,10 +289,12 @@ section#homework {
   color: #fff;
   font-size: 20px;
   list-style: none;
+  display: block;
 }
 a{
   text-decoration: none;
 }
+
 
 /* Media Query: Large Smartphone (Vertical) */
 @media (max-width: 600px) {

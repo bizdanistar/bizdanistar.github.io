@@ -28,7 +28,7 @@ navAnimation('out', 'in')
 }else{
   // Animate Out - Overlay
   overlay.classList.replace('overlay-slide-right', 'overlay-slide-left')
-  //Animate Out - NAve Items
+  //Animate Out - Nave Items
   navAnimation('in', 'out')
 }
 }
