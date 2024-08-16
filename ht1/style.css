@@ -1,0 +1,107 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+.wrapper {
+  display: flex;
+ align-items: baseline;
+}
+
+.main-title, .favorites-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.favorites{
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+/* Individual Movie Task */
+.task {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: 300px;
+  text-align: center;
+}
+
+.task img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.task h1 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #007bff;
+}
+
+.task p {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.task button.add {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.task button.add:hover {
+  background-color: #0056b3;
+}
+
+
+
+.favorites div {
+  background-color: #ffe599;
+  border-radius: 10px;
+  padding: 10px;
+  width: 300px;
+  height: 100px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.favorites div h1 {
+  font-size: 1.2em;
+  color: #d35400;
+}
+.delete {
+  background-color: #d35400;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.delete:hover {
+  background-color: #d35400;
+}
