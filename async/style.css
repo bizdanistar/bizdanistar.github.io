@@ -1,0 +1,53 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  height: 100vh;
+  margin: 0;
+}
+
+.user-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  width: 300px;
+ 
+}
+
+.user-photo {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.user-name {
+  font-size: 1.5em;
+  margin: 10px 0;
+  color: #333333;
+}
+
+.user-bio, .user-email, .user-phone {
+  color: #777777;
+  font-size: 0.9em;
+  margin: 5px 0;
+}
+
+.user-location i, .user-email i, .user-phone i {
+  color: #ff6b6b;
+  margin-right: 8px;
+}
+
+@media screen and (max-width: 400px) {
+  .card {
+      width: 100%;
+      margin: 20px;
+  }
+}
