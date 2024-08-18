@@ -81,12 +81,11 @@ const movies = [
   },
 ];
 
-const favorites = document.querySelector('.favorites');
 const container = document.querySelector('.container');
+const favorites = document.querySelector('.favorites');
 
-// Function to display the list of movies
 const displayMovies = function() {
-  container.innerHTML = ''; // Clear the list before displaying to avoid duplication
+  container.innerHTML = ''; 
   movies.forEach((item, index) => {
     let movie = 
     `<div class='task'>
@@ -104,14 +103,15 @@ const displayMovies = function() {
 
   
   const addBtn = document.querySelectorAll('.add');
+
   addBtn.forEach(button => {
     button.addEventListener('click', function() {
+      
       const movieIndex = this.getAttribute('data-index');
       addToFavorites(movieIndex);
     });
   });
 }
-
 
 const addToFavorites = function(index) {
   const movie = movies[index];
@@ -123,7 +123,6 @@ const addToFavorites = function(index) {
   
   favorites.insertAdjacentHTML("beforeend", favoriteMovie);
 
-  
   const deleteBtn = favorites.querySelector('.movies:last-child .delete');
   deleteBtn.addEventListener('click', function() {
     this.parentElement.remove();
