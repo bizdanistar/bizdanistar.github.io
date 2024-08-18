@@ -113,20 +113,36 @@ const displayMovies = function() {
   });
 }
 
+const favoriteMovieIds = [];
+
 const addToFavorites = function(index) {
   const movie = movies[index];
-  let favoriteMovie = `
-  <div class='movies'>
-    <h1>${movie.title}</h1>
-    <button class="delete">Delete</button>
-  </div>`;
   
-  favorites.insertAdjacentHTML("beforeend", favoriteMovie);
 
-  const deleteBtn = favorites.querySelector('.movies:last-child .delete');
-  deleteBtn.addEventListener('click', function() {
-    this.parentElement.remove();
-  });
+  if (favoriteMovieIds.includes(movie.id)) {
+    alert(`${movie.title} is already in your favorites!`);
+  } else {
+    favoriteMovieIds.push(movie.id); 
+
+    let favoriteMovie = `
+    <div class='movies'>
+      <h1>${movie.title}</h1>
+      <button class="delete">Delete</button>
+    </div>`;
+  
+    favorites.insertAdjacentHTML("beforeend", favoriteMovie);
+
+    const deleteBtn = favorites.querySelector('.movies:last-child .delete');
+    deleteBtn.addEventListener('click', function() {
+      removeFromFavorites(movie.id, this.parentElement);
+    });
+  }
+}
+
+const removeFromFavorites = function(id, element) {
+
+  favoriteMovieIds.splice(favoriteMovieIds.indexOf(id), 1);
+  element.remove();
 }
 
 displayMovies();
