@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+ 
+  <script src="https://kit.fontawesome.com/d825376025.js" crossorigin="anonymous"></script>
+  <title>Document</title>
+ <link rel="stylesheet" href="/delete/product.css">
+</head>
+<body>
+  <div class="contentTable">
+    <div class="contentHeader">
+      <div>
+        
+        <a href="/delete/index.html"><button class="buttons create"><i class="fa-solid fa-plus"></i> Add new product</button></a>
+      </div>
+      <div class="productList">
+
+      </div>
+    </div>
+    
+      </div>
+       
+
+
+<div class="modal">
+  <div class="modal-content">
+   
+<div class="input-div">
+  <span class="close">x</span>
+    <input id="image-url-modal" type="text" placeholder="Image URL">
+    <input id="product-title-modal" type="text" placeholder="Product name">
+   <textarea  id="description-modal" cols="30" rows="10" placeholder="Description"></textarea> 
+   <input type="number"  id="price-modal" placeholder="Price">
+  </div>
+    <div class='action'>
+      <button data-index="${product.id}" class='save'>Save</button>
+      
+  </div>
+</div>
+
+  <script src="/delete/product.js"></script>
+</body>
+</html>
+
