@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/shop/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://kit.fontawesome.com/d825376025.js" crossorigin="anonymous"></script>
+
+
+
+
+  <title>Document</title>
+</head>
+<body>
+  <div class="mainDiv">
+  <div class="topNav">
+    <div class="logo"><i class="fa-solid fa-lock logoIcon"></i> <h1>Admin</h1></i></div>
+   
+    <div class="topSearch"><i class="fa-solid fa-magnifying-glass"></i><input id="topSearch" type="Search" placeholder="Search">
+      
+    </div>
+    <div class="leftIcons">
+      <div><i class="fa-solid fa-sun"></i></div>
+      <div><i class="fa-solid fa-bell"></i></div> 
+      <div class="account"></div>
+    </div>
+  </div>
+  <div class="content1">
+    <div class="sideBar">
+      <div class="sidenav">
+        <a href="#about"><i class="fa-solid fa-bars-staggered"></i>Dashboard</a>
+       
+        <button class="dropdown-btn"><i class="fa-solid fa-box-archive"></i>Products
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+          <a href="/shop/createproduct.html">Add product</a>
+          <a href="#">Product list</a>
+          <a href="#">Categories</a>
+          <a href="#">Brands</a>
+        </div>
+        <button class="dropdown-btn"><i class="fa-solid fa-cart-shopping"></i>Orders
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+        <a href="#customers"><i class="fa-solid fa-user-group"></i>Customers</a>
+        <a href="#statistic"><i class="fa-solid fa-chart-simple"></i>Statistic</a>
+        <a href="#reviews"><i class="fa-solid fa-message"></i>Reviews</a>
+        <a href="#contact"><i class="fa-solid fa-money-bill"></i></i>Transactions</a>
+        <a href="#sellers"><i class="fa-solid fa-globe"></i>Sellers</a>
+        <a href="#hotoffers"><i class="fa-solid fa-tag"></i>Hot offers</a>
+        <a class="appearance" href="#appearance"><i class="fa-solid fa-pen"></i>Appearance</a>
+        <a href="#settings"><i class="fa-solid fa-gear"></i>Settings</a>
+      </div>
+    </div>
+    <div class="center">
+
+    <div class="contentTable">
+<div class="contentHeader">
+  <h2>Products grid</h2>
+  <div>
+    <button class="buttons export"><i class="fa-solid fa-cloud-arrow-up"></i>Export</button>
+    <a href="/shop/createproduct.html"><button class="buttons create"><i class="fa-solid fa-plus"></i>Create new</button></a>
+  </div>
+</div>
+<div   class="category" >
+  <input type="text" name="Search" id="search" placeholder="Search">
+  <div>
+  <button class="categoryButtons">Category <i class="fa-solid fa-angle-down"></i></button>
+  <button class="categoryButtons">Last added <i class="fa-solid fa-arrows-up-down"></i></button>
+</div>
+</div>
+<div class="productGrid">
+
+
+</div>
+<div class="pages">
+
+  <div class="pagination">
+    <a href="#">Previous</a>
+    <a href="#">1</a>
+    <a href="#" class="active">2</a>
+    <a href="#">3</a>
+    <a href="#">Next</a>
+  </div>
+
+
+
+</div>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modul">
+<div class="modul-input">
+  <label>Product Title</label>
+  <input id="title" type="text" placeholder="Product Title">
+  <label>Product Description</label>
+  <textarea  id="description" cols="30" rows="10" placeholder="Product Description"></textarea>
+  
+  <label>Image URL</label>
+  <input id="image-url" type="text" placeholder="Image URL">
+  <label>Category</label>
+  <input id="category" type="text" placeholder="Category">
+  <label>Subcategory</label>
+  <input id="subcategory" type="text" placeholder="Sub Category">
+  <label>Price</label>
+  <input id="price" type="text" placeholder="Price">
+  <button id="save">Save
+    <div class="close">X</div>
+  </button>
+</div>
+
+</div>
+<script src="/shop/script.js"></script>
+</body>
+</html>

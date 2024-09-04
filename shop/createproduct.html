@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/shop/createproduct.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://kit.fontawesome.com/d825376025.js" crossorigin="anonymous"></script>
+
+
+
+
+  <title>Document</title>
+</head>
+<body>
+  <div class="mainDiv">
+  <div class="topNav">
+    <div class="logo"><i class="fa-solid fa-lock logoIcon"></i> <h1>Admin</h1></i></div>
+   
+    <div class="topSearch"><i class="fa-solid fa-magnifying-glass"></i><input type="Search" placeholder="Search">
+      
+    </div>
+    <div class="leftIcons">
+      <div><i class="fa-solid fa-sun"></i></div>
+      <div><i class="fa-solid fa-bell"></i></div> 
+      <div class="account"></div>
+    </div>
+  </div>
+  <div class="content1">
+    <div class="sideBar">
+      <div class="sidenav">
+        <a href="/shop/index.html"><i class="fa-solid fa-bars-staggered"></i>Dashboard</a>
+       
+        <button class="dropdown-btn"><i class="fa-solid fa-box-archive"></i>Products
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+          <a href="#">Add product</a>
+          <a href="#">Product list</a>
+          <a href="#">Categories</a>
+          <a href="#">Brands</a>
+        </div>
+        <button class="dropdown-btn"><i class="fa-solid fa-cart-shopping"></i> Orders
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+        <a href="#customers"><i class="fa-solid fa-user-group"></i>Customers</a>
+        <a href="#statistic"><i class="fa-solid fa-chart-simple"></i>Statistic</a>
+        <a href="#reviews"><i class="fa-solid fa-message"></i>Reviews</a>
+        <a href="#contact"><i class="fa-solid fa-money-bill"></i></i>Transactions</a>
+        <a href="#sellers"><i class="fa-solid fa-globe"></i>Sellers</a>
+        <a href="#hotoffers"><i class="fa-solid fa-tag"></i>Hot offers</a>
+        <a class="appearance" href="#appearance"><i class="fa-solid fa-pen"></i>Appearance</a>
+        <a href="#settings"><i class="fa-solid fa-gear"></i>Settings</a>
+      </div>
+    </div>
+    <div class="center">
+
+    <div class="contentTable">
+<div class="contentHeader">
+  <h2>Create product</h2>
+</div>
+<div></div>
+<div class="productGrid">
+  <form>
+    <label for="fname">Product Title</label>
+    <input type="text" id="fname" placeholder="Product Title">
+    <label for="textname">Description</label>
+    <textarea name="textname" id="description" cols="40" rows="5" ></textarea>
+    <label for="images">Images</label>
+    <input id="image-url" type="text" placeholder="Image URL">
+    <label for="tags">Tags</label>
+    <div class="tags">
+      <button>Clothes <i class="fa-solid fa-xmark"></i></i></button>
+      <button>Men <i class="fa-solid fa-xmark"></i></button>
+      <button>Fashion <i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="selectcategory">
+      <div>
+    <label class="label" for="category">Category</label>
+    <input id="category" type="text">
+  </div>
+  <div>
+   <label class="label" for="subcategory">Sub category</label><br>
+  <input id="subcategory" type="text">
+    </div>
+  </div>
+    <br>
+    <label for="price">Price</label>
+    <input type="text" id="price" placeholder="Type here">
+
+    <label for="curency"></label>
+    <select name="curency" id="curency">
+      <option value="USD">USD</option>
+    </select><br>
+    <button id="submit-btn">Submit</button>
+  </form>
+
+
+</div>
+    </div>
+    </div>
+  </div>
+</div>
+<button class="deleteAll">delete all</button>
+
+
+<script src="/shop/create.js">
+  
+  </script>
+</body>
+</html>

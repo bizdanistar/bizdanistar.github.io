@@ -12,7 +12,7 @@ let priceModal = document.querySelector('#price-modal');
 const saveBtn = document.querySelector('.save');
 
 // API URL
-const url = 'https://solar-poised-salad.glitch.me/products';
+const url = 'https://solar-poised-salad.glitch.me/nazgul';
 
 let itemId = null;
 
