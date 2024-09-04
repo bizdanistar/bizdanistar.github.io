@@ -1,0 +1,390 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Base Styles */
+body {
+  font-family: "Lato", sans-serif;
+  background-color: #eeeeee;
+  width: 100vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+ .mainDiv {
+  display: block;
+  
+} 
+.topNav {
+  display: flex;
+  width: 100vw;
+  height: 5vh;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding-right: 20px;
+}
+
+.logo {
+  width: 250px;
+  display: flex;
+  padding-left: 15px;
+}
+
+h1 {
+  color: rgb(8, 117, 189);
+}
+
+.logo i {
+  font-weight: 800;
+  color: rgb(8, 117, 189);
+  font-size: 2em;
+}
+
+.topSearch {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  padding-left: 3%;
+}
+
+.topSearch input {
+  border: none;
+  outline: none;
+  padding-left: 10px;
+}
+
+.topSearch i {
+  float: right;
+  padding: 0;
+}
+
+.leftIcons {
+  display: flex;
+  justify-content: space-between;
+  width: 8%;
+  align-items: center;
+}
+
+.account {
+  border: 1px solid rgba(178, 178, 178, 0.2);
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background-image: url(https://randomuser.me/api/portraits/thumb/women/75.jpg);
+  background-position: center;
+}
+
+/* Sidebar */
+.sidenav {
+  height: 100%;
+  width: 220px;
+  /* position: absolute;
+  top: 5vh;
+  left: 0; */
+  background-color: #ffffff;
+  border-top: 0.5px solid rgba(208, 207, 207, 0.69);
+  padding-top: 20px;
+}
+
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 20px 16px;
+  text-decoration: none;
+  font-size: 1em;
+  color: #4e4e4e;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+.sidenav a:hover, .dropdown-btn:hover {
+  color: rgb(8, 117, 189);
+}
+
+i {
+  padding-right: 10%;
+  color: #a1a1a1;
+}
+
+.active {
+  background-color: rgb(179, 222, 250);
+  color: rgb(8, 117, 189);
+}
+
+.dropdown-container {
+  display: none;
+  background-color: #fff;
+  padding-left: 25px;
+}
+
+.fa-caret-down {
+  float: right;
+  padding-right: 25px;
+}
+
+.appearance::before {
+  content: '⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯';
+  color: #d1d0d0;
+}
+
+/* Main Content */
+.main {
+  padding: 10px;
+  font-size: 20px;
+ 
+}
+.content1{
+  width: 100vw;
+
+  display: flex;
+  justify-content: space-between;
+ 
+    }
+
+.center {
+ width: 100%;
+ 
+}
+
+.contentTable {
+  width: 100%;
+  height: auto;
+  background-color: #eeeeee;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.contentHeader {
+  width: 100%;
+  height: 7%;
+  background-color: #eeeeee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.category {
+  width: 100%;
+  height: 5%;
+  border-bottom: solid 1px #e9e8e8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.categoryButtons {
+  background-color: #fff;
+  border-radius: 5px;
+  width: 100px;
+  height: 25px;
+  border: solid 1px #e9e8e8;
+  color: #707070;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+#search {
+  margin-left: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  width: 25%;
+  height: 25px;
+  border: solid 1px #e9e8e8;
+}
+
+::placeholder {
+  color: #a5a5a5;
+  opacity: 1;
+}
+
+.buttons {
+  background-color: #fff;
+  border-radius: 8px;
+  width: 100px;
+  height: 30px;
+  border: solid 1px #e9e8e8;
+  color: black;
+  cursor: pointer;
+}
+
+.create {
+  background-color: rgb(8, 117, 189);
+  color: #fff;
+  width: 130px;
+}
+
+.create i {
+  color: #fff;
+}
+
+/* Product Grid */
+.productGrid {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 23%);
+  grid-template-rows: 1fr 1fr;
+  gap: 1%;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+.img img {
+  width: auto;
+  max-height: 150px;
+  margin: 10px 0;
+}
+
+.item {
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px;
+  border: solid 1px #e9e8e8;
+  color: #707070;
+}
+
+.item button {
+  background-color: #fff;
+  border-radius: 8px;
+  width: 50%;
+  height: 100%;
+  border: solid 1px #e9e8e8;
+  color: black;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#delete, #delete i {
+  color: rgb(192, 36, 36);
+}
+
+.price {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: left;
+  padding: 0 10% 5% 10%;
+  gap: 5%;
+  box-sizing: border-box;
+}
+
+.priceBtn {
+  height: 3vh;
+  display: flex;
+  justify-content: start;
+  gap: 5%;
+}
+
+span {
+  color: #000;
+}
+
+/* Pagination */
+.pages {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  align-items: center;
+}
+
+.pagination {
+  display: inline-block;
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 15px;
+}
+
+.pagination a {
+  color: black;
+  font-size: 12px;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: 1px solid #ddd;
+}
+
+.pagination a.active {
+  background-color: rgb(8, 117, 189);
+  color: white;
+  border: 1px solid rgb(8, 117, 189);
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.modul{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: #eeeeee;
+  opacity: 1;
+  display: none;
+ padding-left: 20vw;
+ padding-top: 15vh;
+}
+.modul-input{
+  width: 60vw;
+  max-height: 800px;
+  background-color: #fff;
+ border-radius: 10px;
+box-shadow: 0 5px 5px 5px #d3d2d2;
+display: flex;
+flex-direction: column;
+gap: 10px;
+padding: 10px;
+position: relative;
+}
+.close{
+  position: fixed;
+  top: 14vh;
+  right: 18vw;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+}
+input{
+
+  outline: none;
+  background-color: #fff;
+  border-radius: 8px;
+  width: 100%;
+  height: 25px;
+  border: solid 1px #e9e8e8;
+}
+textarea{
+  outline: none;
+  background-color: #fff;
+  border-radius: 8px;
+  width: 100%;
+  
+  border: solid 1px #e9e8e8; 
+}
+/* Responsive Design */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}

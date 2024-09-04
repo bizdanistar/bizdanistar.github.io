@@ -1,27 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <style>
-    .container {
-      display: flex;
-      flex-direction: column;
-    }
-  </style>
-  <title>Document</title>
-</head>
-<body>
-  <button id="axios">Axios</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<div class="container">
+    <link rel="stylesheet" href="/axios-project/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-</div>
+    <script
+      src="https://kit.fontawesome.com/d825376025.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Movies</title>
+  </head>
+  <body>
+    <!-- <button id="axios">Axios</button> -->
+    <div class="genre">
+    
+    </div>
+    <div class="main">
+      <div class="search">
+        <input id="searchInput" type="search">
+        <button class="searchBtn"><i class="fa-solid fa-magnifying-glass"></i> </button>
+        <button class="favBtn">Favorites</button>
+      </div>
 
+      <div class="found">
 
-  
-  <!-- <script src="/axios-project/script.js"></script> -->
-  <script src="/axios-project/api.js"></script>
-</body>
+      </div>
+      <div class="container"></div>
+    
+
+      <div class="favorites">
+        <div class="closebtn">
+          <p class="close">X</p>
+        </div>
+        <div class="sidenav" id="mySidenav">
+        
+        </div>
+        <div class="fav-list"></div>
+      </div>
+    </div>
+    
+
+    <script src="/axios-project/api.js"></script>
+  </body>
 </html>
