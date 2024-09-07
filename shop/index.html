@@ -38,7 +38,7 @@
         </button>
         <div class="dropdown-container">
           <a href="/shop/createproduct.html">Add product</a>
-          <a href="#">Product list</a>
+          <a href="/shop/home.html">Product list</a>
           <a href="#">Categories</a>
           <a href="#">Brands</a>
         </div>
@@ -46,9 +46,7 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+         
         </div>
         <a href="#customers"><i class="fa-solid fa-user-group"></i>Customers</a>
         <a href="#statistic"><i class="fa-solid fa-chart-simple"></i>Statistic</a>
@@ -72,8 +70,15 @@
 </div>
 <div   class="category" >
   <input type="text" name="Search" id="search" placeholder="Search">
+  <button id="searchButton"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
   <div>
-  <button class="categoryButtons">Category <i class="fa-solid fa-angle-down"></i></button>
+ 
+  <select id="subcategoryBtn">
+    <option value="all">All</option>
+    <option value="sports">Sports</option>
+    <option value="Sales & Deals">Sales & Deals</option>
+    <option value="Hunting & Fishing">Hunting & Fishing</option>
+  </select>
   <button class="categoryButtons">Last added <i class="fa-solid fa-arrows-up-down"></i></button>
 </div>
 </div>
@@ -81,7 +86,7 @@
 
 
 </div>
-<div class="pages">
+<!-- <div class="pages">
 
   <div class="pagination">
     <a href="#">Previous</a>
@@ -89,7 +94,7 @@
     <a href="#" class="active">2</a>
     <a href="#">3</a>
     <a href="#">Next</a>
-  </div>
+  </div> -->
 
 
 

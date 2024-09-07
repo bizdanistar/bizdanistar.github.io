@@ -1,146 +1,175 @@
-const url = 'https://solar-poised-salad.glitch.me/nazgul/'
-const productGrid = document.querySelector('.productGrid')
+const url = 'https://solar-poised-salad.glitch.me/nazgul/';
+const productGrid = document.querySelector('.productGrid');
+const subcategoryDropdown = document.querySelector('#subcategoryBtn');
+const searchInput = document.querySelector('#search');
+const searchButton = document.querySelector('#searchButton');
+let shopCart = JSON.parse(localStorage.getItem("cart")) || [];
 
-const saveBtn = document.querySelector('#save')
-let title = document.querySelector('#title')
-let description = document.querySelector('#description')
-let imageUrl = document.querySelector('#image-url')
-let category = document.querySelector('#category')
-let subcategory = document.querySelector('#subcategory')
-let price = document.querySelector('#price')
-let productId = null
-async function renderProduct(product) {
-    productGrid.innerHTML = ''
-product.forEach(product => {
-  const displayProduct = ` 
-   <div class="item">
-      <div class="img">
-        <img src="${product.imageUrl}" alt="">
-      </div>
-      <div class="price">
-      <p>${product.productTitle}</p>
-      <p>${product.description}</p>
-      <span>${product.category} > ${product.subcategory} </span>
-      <p> <span>${product.price}</span></p>
-      <div class="priceBtn">
-        <button class='edit' data-index='${product.id}'><i class="fa-solid fa-pen"></i>Edit</button>
-        <button class="delete" data-id='${product.id}'><i class="fa-solid fa-trash"></i>Delete</button>
-      </div>
-      </div>
-    </div>
-`    
-productGrid.insertAdjacentHTML('beforeend', displayProduct)
-});
-attachEventListeners() 
+// Modal Elements
+const modal = document.querySelector('.modul');
+const titleInput = document.querySelector('#title');
+const descriptionInput = document.querySelector('#description');
+const imageUrlInput = document.querySelector('#image-url');
+const categoryInput = document.querySelector('#category');
+const subcategoryInput = document.querySelector('#subcategory');
+const priceInput = document.querySelector('#price');
+const saveButton = document.querySelector('#save');
 
+let currentProductId = null;  // Stores the ID of the product being edited
+
+async function renderProduct(products) {
+  productGrid.innerHTML = ''; 
+  products.forEach(product => {
+    const displayProduct = ` 
+      <div class="item">
+        <div class="img">
+          <img src="${product.imageUrl}" alt="">
+        </div>
+        <div class="price">
+          <p class='title'>${product.productTitle}</p>
+          <p class='description'>${product.description}</p>
+          <span>${product.category} > ${product.subcategory}</span>
+          <p class='priceP'><span>$${product.price}</span></p>
+          <div class="priceBtn">
+            <button class='edit' data-id='${product.id}'><i class="fa-solid fa-pen"></i> Edit</button>
+            <button class="delete" data-id='${product.id}'><i class="fa-solid fa-trash"></i> Delete</button>
+          </div>
+        </div>
+      </div>
+    `;
+    productGrid.insertAdjacentHTML('beforeend', displayProduct);
+  });
+
+  attachEventListeners(products); // Pass products to attach correct events
 }
-
 
 const getData = async () => {
   try {
     const { data } = await axios(url);
-    renderProduct(data)
+    renderProduct(data); 
+    attachSubcategoryFilter(data); 
+    attachSearchFilter(data); 
   } catch (error) {
     console.error('Error fetching data:', error);
   }
 };
-getData()
-
-async function getProduct() {
-  try {
-    const res = await axios(`${url}/${productId}`);
-    const item = res.data
-
-    title.value = item.productTitle
-      description.value = item.description
-      imageUrl.value = item.imageUrl
-      category.value =  item.category
-      subcategory.value = item.subcategory
-      price.value =  item.price
- 
-  } catch (error) {
-    console.error('Error fetching product:', error);
-  }
-}
-
-function attachEventListeners() {
- const editBtns = document.querySelectorAll('.edit');
-editBtns.forEach(btn => {
-  btn.addEventListener('click', async function(e) {
-    productId = e.currentTarget.dataset.index;
-    console.log(productId);
-    getProduct()
-    openNav()
-  });
-});
+getData();
 
 
-  // const deleteBtns = document.querySelectorAll('.delete');
-  // deleteBtns.forEach(btn => {
-  //   btn.addEventListener('click', async function(e) {
-  //    productId = this.getAttribute('data-id');
-  //     // productId = e.currentTarget.dataset.index;
-  //     console.log('Delete button clicked for product ID:', productId);
-  //     const response = await axios(`${url}/${productId}`)
-  //     try {
-  
-     
-  //     } catch (error) {
+function attachEventListeners(products) {
+  const editBtns = document.querySelectorAll('.edit');
+  editBtns.forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      console.log('clicked');
+      openNav();
+      currentProductId = e.currentTarget.getAttribute('data-id');
+      const productToEdit = products.find(product => product.id === currentProductId);
+      
+      if (productToEdit) {
         
-  //     }
-     
-  //   });
-  // });
-}
-
-
-
-
-
-
-saveBtn.addEventListener('click', async function () {
-  const res = {
-    productTitle: title.value,
-    description: description.value,
-    imageUrl: imageUrl.value,
-    category: category.value,
-    subcategory: subcategory.value,
-    price: price.value,
-  }
-    try {
-      const response = await axios.patch(`${url}/${productId}`, res)
-   
-     console.log(res);
-        document.querySelector('.modul').style.display = 'none'
-        getData()
-       
-      } catch (error) {
-        console.error('Error updating product:', error);
+        // Pre-fill modal inputs with existing product details
+        titleInput.value = productToEdit.productTitle;
+        descriptionInput.value = productToEdit.description;
+        imageUrlInput.value = productToEdit.imageUrl;
+        categoryInput.value = productToEdit.category;
+        subcategoryInput.value = productToEdit.subcategory;
+        priceInput.value = productToEdit.price;
       }
     });
-  
+  });
 
-function openNav() {
-  document.querySelector('.modul').style.display = 'block'
-}
+  const deleteBtns = document.querySelectorAll('.delete');
+  deleteBtns.forEach(btn => {
+    btn.addEventListener('click', async function (e) {
+      const productId = this.getAttribute('data-id');
+      console.log('Delete button clicked for product ID:', productId);
 
-document.querySelector('.close').addEventListener('click', function(){
-  document.querySelector('.modul').style.display = 'none'
-})
-
-
-
-let dropdown = document.getElementsByClassName("dropdown-btn");
-let i;
-
-for (i = 0; i < dropdown.length; i++) {
-  dropdown[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    let dropdownContent = this.nextElementSibling;
-    if (dropdownContent.style.display === "block") {
-      dropdownContent.style.display = "none";
-    } else {
-      dropdownContent.style.display = "block";
-    }
+      try {
+        await axios.delete(`${url}/${productId}`);
+        getData();
+      } catch (error) {
+        console.error('Error deleting product:', error);
+      }
+    });
   });
 }
+
+// Handle saving edited product details
+saveButton.addEventListener('click', async function () {
+  const updatedProduct = {
+    productTitle: titleInput.value,
+    description: descriptionInput.value,
+    imageUrl: imageUrlInput.value,
+    category: categoryInput.value,
+    subcategory: subcategoryInput.value,
+    price: priceInput.value
+  };
+
+  try {
+    await axios.patch(`${url}/${currentProductId}`, updatedProduct);
+    closeNav();  // Close the modal
+    getData();  // Reload the updated data
+  } catch (error) {
+    console.error('Error updating product:', error);
+  }
+});
+
+function openNav() {
+  modal.style.visibility = 'visible';
+}
+
+function closeNav() {
+  modal.style.visibility = 'hidden';
+}
+
+// Close the modal when clicking the close button
+document.querySelector('.close').addEventListener('click', closeNav);
+
+// Subcategory dropdown filter
+function attachSubcategoryFilter(products) {
+  subcategoryDropdown.addEventListener('change', function () {
+    const selectedSubcategory = subcategoryDropdown.value;
+    const filteredProducts = filterProductsBySubcategory(products, selectedSubcategory);
+    renderProduct(filteredProducts); 
+  });
+}
+
+function filterProductsBySubcategory(products, selectedSubcategory) {
+  if (selectedSubcategory === 'all') {
+    return products;
+  }
+  return products.filter(product => product.subcategory.toLowerCase() === selectedSubcategory.toLowerCase());
+}
+
+// Search filter
+function attachSearchFilter(products) {
+  searchButton.addEventListener('click', function () {
+    const searchTerm = searchInput.value.trim();
+    const filteredProducts = filterProductsBySearch(products, searchTerm);
+    renderProduct(filteredProducts); 
+  });
+}
+
+function filterProductsBySearch(products, searchTerm) {
+  if (!searchTerm) {
+    return products; 
+  }
+  return products.filter(product => 
+    product.productTitle.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    product.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+}
+let dropdown = document.getElementsByClassName("dropdown-btn");
+  let i;
+  
+  for (i = 0; i < dropdown.length; i++) {
+    dropdown[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      let dropdownContent = this.nextElementSibling;
+      if (dropdownContent.style.display === "block") {
+        dropdownContent.style.display = "none";
+      } else {
+        dropdownContent.style.display = "block";
+      }
+    });
+  }

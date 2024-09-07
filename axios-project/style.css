@@ -178,7 +178,7 @@ i {
 .favorites{
   display: flex;
   flex-direction: column;
-  height: 50vh;
+  height: auto;
   width: 100vw;
   position: fixed;
   z-index: 10;
@@ -234,7 +234,55 @@ i {
   font-size: 1em;
 }
 .genreBtn::after{
-  content: '⎮';
+  content: ' ⎮';
 }
 
 
+.high-rating {
+  background-color: green;
+  color: white;
+}
+
+.medium-rating {
+  background-color: orange;
+  color: white;
+}
+
+.low-rating {
+  background-color: red;
+  color: white;
+}
+
+.pages {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  align-items: center;
+}
+
+.pagination {
+  display: inline-block;
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 15px;
+}
+
+.pagination a {
+  color: black;
+  font-size: 12px;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: 1px solid #ddd;
+}
+
+.pagination a.active {
+  background-color: rgb(8, 117, 189);
+  color: white;
+  border: 1px solid rgb(8, 117, 189);
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
