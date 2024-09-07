@@ -1,0 +1,227 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base Styles */
+body {
+  font-family: "Lato", sans-serif;
+  background-color: #f7f9fb; /* Light background color */
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  color: #333;
+}
+
+/* Top Navigation */
+.topNav {
+  background-color: #6a6e86; /* Dark blue/navy */
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+.topNav a{
+  text-decoration: none;
+  color: #fff;
+}
+#search {
+  width: 80%;
+  height: 50%;
+ padding: 5px;
+ font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f2f2f2;
+}
+
+/* .cartPage {
+ 
+  background-color: #fafafa;
+  width: 80px;
+  height: 30px;
+  margin-right: 15px;
+} */
+
+/* Main Wrapper */
+.mainDiv {
+  display: block;
+}
+
+/* Icons */
+i {
+  color: #a1a1a1;
+  margin-right: 10px;
+}
+
+.active {
+  background-color: #d8e2f1; /* Light blue */
+  color: #2541b2; /* Deep blue */
+}
+
+/* Main Content Area */
+.main {
+  padding: 10px;
+  font-size: 20px;
+  background-color: #ffffff; /* White background */
+}
+
+/* Flexible Layout */
+.content1 {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+}
+
+.center {
+  width: 100%;
+  text-align: center;
+}
+
+/* Content Table */
+.contentTable {
+  width: 100%;
+  background-color: #f4f7fc; /* Light grey/blue */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 15px;
+}
+
+/* Product Grid */
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 23%);
+  gap: 1%;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px 0;
+}
+
+/* Product Image */
+.img img {
+  max-width: 200px;
+  width: 100%;
+  margin: 10px 0;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #eceff5; /* Subtle border around the image */
+}
+
+/* Product Item */
+.item {
+  background-color: #ffffff;
+  border: 1px solid #e9e8e8;
+  border-radius: 8px;
+  text-align: center;
+  padding: 20px;
+  color: #707070;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s;
+}
+
+.item:hover {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  transform: scale(1.02);
+}
+
+.item button {
+  background-color: #ffcc66; /* Warm yellow */
+  border: 1px solid #ffb347; /* Slightly darker yellow */
+  border-radius: 8px;
+  width: 50%;
+  height: 30px;
+  color: black;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.item button:hover {
+  background-color: #ffb347; /* Darker yellow on hover */
+}
+
+/* Product Price & Info */
+.price {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: left;
+  padding: 0 10% 5% 10%;
+  gap: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.price span {
+  color: #2541b2; /* Deep blue for prices */
+}
+
+/* Button Container */
+.priceBtn {
+  display: flex;
+  justify-content: start;
+  gap: 10px;
+  align-items: center;
+}
+
+.priceBtn button, .cartPage {
+  width: 100px;
+  height: 30px;
+  padding: 0 5px;
+  border-radius: 4px;
+  background-color: #5c8dff; /* Vibrant red */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.cartPage i, .priceBtn button i{
+  color: #fff;
+}
+.priceBtn button:hover {
+  background-color: #d93b3b; /* Darker red on hover */
+}
+#searchBtn{
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+   padding: 5px 5px; 
+  border-radius: 4px;
+  background-color: #5c8dff; /* Vibrant red */
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#searchBtn i{
+color: #fff;
+}
+/* Item Counter */
+.itemCount, .totalSum {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2f3e9e; /* Dark blue for counter */
+  margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .productGrid {
+    grid-template-columns: repeat(2, 48%);
+  }
+
+  .price {
+    padding: 0 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .productGrid {
+    grid-template-columns: repeat(1, 90%);
+  }
+}

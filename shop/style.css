@@ -183,7 +183,7 @@ i {
   padding-bottom: 10px;
 }
 
-.categoryButtons {
+.categoryButtons, #subcategoryBtn {
   background-color: #fff;
   border-radius: 5px;
   width: 100px;
@@ -200,9 +200,19 @@ i {
   padding-left: 10px;
   background-color: #fff;
   border-radius: 8px;
-  width: 25%;
+  width: 50%;
   height: 25px;
   border: solid 1px #e9e8e8;
+}
+#searchButton{
+  background-color: #fff;
+  border-radius: 5px;
+  width: 100px;
+  height: 25px;
+  border: solid 1px #e9e8e8;
+  color: #707070;
+  margin-right: 15px;
+  cursor: pointer;
 }
 
 ::placeholder {
@@ -219,7 +229,9 @@ i {
   color: black;
   cursor: pointer;
 }
-
+button .edit, .delete{
+  color: #e04b4b;
+}
 .create {
   background-color: rgb(8, 117, 189);
   color: #fff;
@@ -246,7 +258,7 @@ i {
 
 .img img {
   width: auto;
-  max-height: 150px;
+  max-width: 200px;
   margin: 10px 0;
 }
 
@@ -294,6 +306,21 @@ i {
 span {
   color: #000;
 }
+.title{
+  font-size: 16px;
+  color: #4e4e4e;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.description{
+  margin-bottom: 10px;
+}
+
+.priceP{
+  font-size: 20px;
+  margin: 10px;
+  color: rgb(152, 20, 20)000;
+}
 
 /* Pagination */
 .pages {
@@ -333,14 +360,16 @@ span {
 .modul{
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
+  visibility: hidden;
   top: 0;
   bottom: 0;
   background-color: #eeeeee;
   opacity: 1;
-  display: none;
+  
  padding-left: 20vw;
  padding-top: 15vh;
+
 }
 .modul-input{
   width: 60vw;

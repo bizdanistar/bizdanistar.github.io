@@ -1,0 +1,91 @@
+/* Container for the cart items */
+.cartDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+/* Individual item container */
+.item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+}
+
+/* Image container */
+.item .img {
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.item .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Price and product info section */
+.price {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.price p {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.price span {
+  font-size: 14px;
+  color: #777;
+}
+
+.price p span {
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+}
+
+/* Button container */
+.priceBtn {
+  margin-top: 10px;
+}
+
+/* Delete button styling */
+.priceBtn .cart-delete {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  background-color: #ff5c5c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.priceBtn .cart:hover {
+  background-color: #ff0000;
+}
+
+/* FontAwesome icon */
+.priceBtn .cart i {
+  font-size: 16px;
+}

@@ -2,201 +2,222 @@ const apiKey = "94710dbf3e97846c6b959f9714538145";
 let urlNew = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`;
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.querySelector('.searchBtn');
-
-const favorites = JSON.parse(localStorage.getItem("favs")) || [];
 const container = document.querySelector(".container");
+const favorites = JSON.parse(localStorage.getItem("favs")) || [];
+const genre = document.querySelector('.genre');
 
-// Function to switch between URLs
-function switchUrl(switchPage) {
-  if (switchPage) {
-    urlNew = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(searchInput.value)}&page=1`;
-  } else {
-    urlNew = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`;
-  }
+
+function switchUrl(isSearch) {
+  urlNew = isSearch 
+    ? `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(searchInput.value)}&page=1`
+    : `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`;
 }
+
 
 async function getMovie() {
   try {
     const { data: { results } } = await axios(urlNew);
-    
     container.innerHTML = '';
-    results.forEach((movie) => {
-      const displayMovies = `
-      <div class='movie'>
-        <div class='image-div'>
-          <button class='vote-avarage'>${movie.vote_average.toFixed(2)}</button>
-          <img class='movie-image' src='https://image.tmdb.org/t/p/w500/${movie.poster_path}' alt='${movie.title}'/>
-        </div>
-        <div class='title-div'>
-          <h1 class='movie-title'>${movie.title}</h1>
-          <p>${movie.release_date}</p>
-          <div class='icons'>
-            <div class='tooltip'>
-              <i class="fa-regular fa-heart favorite-btn" data-movie-id="${movie.id}"></i>
-              <span class="tooltiptext">Add to favorites</span>
-            </div>
-            <div class='tooltip'>
-              <i class="fa-solid fa-share share-button"></i>
-              <span class="tooltiptext">Share</span>
-            </div>
-            <button class='watch' id="${movie.id}">WATCH</button>
-          </div>
-        </div>
-      </div>`;
-      
-      container.insertAdjacentHTML("beforeend", displayMovies);
-    });
-    const btns = document.querySelectorAll(".watch");
-    btns.forEach((btn) => {
-      btn.addEventListener("click", function () {
-        location.href = `movie.html?movieId=${this.id}`;
-      });
-    });
-    const favBtns = document.querySelectorAll(".favorite-btn");
-    favBtns.forEach((btn) => {
-      btn.addEventListener("click", function () {
-        openNav();
-        const foundMovie = results.find(
-          // TODO: use triple equal or strict equality
-          (movie) => movie.id == this.dataset.movieId
-        );
-        if (favorites.find((m) => m.id === foundMovie.id)) {
-          alert("already exist");
-        } else {
-          favorites.push(foundMovie);
-        }
+    results.forEach((movie) => renderMovie(movie));
+    attachMovieEventListeners(results);
+  } catch (error) {
+    console.error('Error fetching movies:', error);
+  }
+}
 
+
+function renderMovie(movie) {
+  const voteAverage = movie.vote_average.toFixed(2);
+  let voteClass = '';
+
+  if (voteAverage >= 7) {
+    voteClass = 'high-rating'; 
+  } else if (voteAverage >= 6) {
+    voteClass = 'medium-rating'; 
+  } else {
+    voteClass = 'low-rating'; 
+  }
+
+  const movieHTML = `
+    <div class='movie'>
+      <div class='image-div'>
+        <button class='vote-avarage ${voteClass}'>${voteAverage}</button>
+        <img class='movie-image' src='https://image.tmdb.org/t/p/w500/${movie.poster_path}' alt='${movie.title}'/>
+      </div>
+      <div class='title-div'>
+        <h1 class='movie-title'>${movie.title}</h1>
+        <p>${movie.release_date}</p>
+        <div class='icons'>
+          <div class='tooltip'>
+            <i class="fa-regular fa-heart favorite-btn" data-movie-id="${movie.id}"></i>
+            <span class="tooltiptext">Add to favorites</span>
+          </div>
+          <div class='tooltip'>
+            <i class="fa-solid fa-share share-button"></i>
+            <span class="tooltiptext">Share</span>
+          </div>
+          <button class='watch' id="${movie.id}">WATCH</button>
+        </div>
+      </div>
+    </div>`;
+  container.insertAdjacentHTML("beforeend", movieHTML);
+}
+
+
+function attachMovieEventListeners(results) {
+ 
+  document.querySelectorAll(".watch").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      location.href = `movie.html?movieId=${this.id}`;
+    });
+  });
+
+
+  document.querySelectorAll(".favorite-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const movieId = parseInt(this.dataset.movieId);
+      const foundMovie = results.find(movie => movie.id === movieId);
+
+      if (!foundMovie) return;
+
+      const movieExistsInFavorites = favorites.some(movie => movie.id === movieId);
+      if (movieExistsInFavorites) {
+        alert("Already exists in favorites");
+      } else {
+        favorites.push(foundMovie);
         localStorage.setItem("favs", JSON.stringify(favorites));
         renderFavorites();
-      });
+        alert(`${foundMovie.title} has been added to favorites`);
+        openNav()
+      }
     });
-  } catch (error) {
-    console.log(error);
-  }
+  });
+
+  attachShareEventListeners(); 
 }
 
 
 function renderFavorites() {
-  const favoritesContainer = document.querySelector(".favorites");
   const sidenav = document.querySelector(".sidenav");
-  sidenav.innerHTML = "";
+  sidenav.innerHTML = '';
   favorites.forEach((movie) => {
     const movieCard = `
       <div class="movie-fav">
-      <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" />
-      <div>
-        <button class="movie-btn watch" id="${movie.id}">WATCH</button>
-        <button class="delete-btn" data-movie-id="${movie.id}">DELETE</button>
-      </div>
-      </div>
-    `;
+        <img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" />
+        <div>
+          <button class="movie-btn watch" id="${movie.id}">WATCH</button>
+          <button class="delete-btn" data-movie-id="${movie.id}">DELETE</button>
+        </div>
+      </div>`;
     sidenav.insertAdjacentHTML("beforeend", movieCard);
+  });
 
-const deleteBtn = document.querySelectorAll('.delete-btn')
-deleteBtn.forEach(btn => {
-  btn.addEventListener('click', function (){
-    try {
-      const movieId = this.getAttribute('data-movie-id');
-      const movieIndex = favorites.findIndex(movie => movie.id === parseInt(movieId));
-      
+  document.querySelectorAll('.delete-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const movieId = parseInt(this.dataset.movieId);
+      const movieIndex = favorites.findIndex(movie => movie.id === movieId);
       if (movieIndex > -1) {
-        favorites.splice(movieIndex, 1);  // Remove the movie from the array
-        localStorage.setItem("favs", JSON.stringify(favorites));  // Update localStorage
-        renderFavorites();  // Re-render the updated list
+        favorites.splice(movieIndex, 1);
+        localStorage.setItem("favs", JSON.stringify(favorites));
+        renderFavorites();
       }
-    } catch (error) {
-      
-    }
-  })
-})
-
+    });
   });
 }
 
-getMovie();
-renderFavorites();
 
 function openNav() {
-  document.querySelector(".favorites").style.visibility = 'visible'
+  document.querySelector(".favorites").style.visibility = 'visible';
 }
-
-document.querySelector('.close').addEventListener('click', function(){
-  document.querySelector(".favorites").style.visibility = 'hidden'
-})
-
-document.querySelector('.favBtn').addEventListener('click', function(){
-  document.querySelector(".favorites").style.visibility = 'visible'
-})
-
-
-searchBtn.addEventListener('click', async function() {
-  switchPage = true;
-  switchUrl(switchPage);
-
-  try {
-    await getMovie();
-  } catch (error) {
-    console.error(error);
-  }
-});
-
-const genre = document.querySelector('.genre')
 
 async function genreFunction() {
   try {
-    const { data } = await axios(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`);
-    const namesGenres = data.genres;
-    
-    namesGenres.forEach(el => {
-      const renderGenre = `
-        <button class='genreBtn' data-index=${el.id}>
-          ${el.name}
-        </button>
-      `;
-      genre.insertAdjacentHTML('beforeend', renderGenre);
+    const { data: { genres } } = await axios(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`);
+    genres.forEach(genre => {
+      const renderGenre = `<button class='genreBtn' data-index=${genre.id}>${genre.name}</button>`;
+      document.querySelector('.genre').insertAdjacentHTML('beforeend', renderGenre);
     });
 
-    const genreBtns = document.querySelectorAll('.genreBtn');
-    genreBtns.forEach((btn) => {
-      btn.addEventListener('click', async function() {
+    document.querySelectorAll('.genreBtn').forEach((btn) => {
+      btn.addEventListener('click', async function () {
         const genreId = this.getAttribute('data-index');
-        const { data } = await axios(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&with_genres=${genreId}`);
-        
-        container.innerHTML = ''; 
-        
-        data.results.forEach((movie) => {
-          const displayMovies = `
-          <div class='movie'>
-            <div class='image-div'>
-              <button class='vote-avarage'>${movie.vote_average.toFixed(2)}</button>
-              <img class='movie-image' src='https://image.tmdb.org/t/p/w500/${movie.poster_path}' alt='${movie.title}'/>
-            </div>
-            <div class='title-div'>
-              <h1 class='movie-title'>${movie.title}</h1>
-              <p>${movie.release_date}</p>
-              <div class='icons'>
-                <div class='tooltip'>
-                  <i class="fa-regular fa-heart favorite-btn" data-movie-id="${movie.id}"></i>
-                  <span class="tooltiptext">Add to favorites</span>
-                </div>
-                <div class='tooltip'>
-                  <i class="fa-solid fa-share share-button"></i>
-                  <span class="tooltiptext">Share</span>
-                </div>
-                <button class='watch' id="${movie.id}">WATCH</button>
-              </div>
-            </div>
-          </div>`;
-          
-          container.insertAdjacentHTML("beforeend", displayMovies);
-        });
-        
-        attachMovieEventListeners(data.results);
+        urlNew = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&with_genres=${genreId}`;
+        await getMovie();
       });
     });
-
   } catch (error) {
-    console.log(error);
+    console.error('Error fetching genres:', error);
   }
 }
-genreFunction()
+
+
+searchBtn.addEventListener('click', async function () {
+  switchUrl(true);
+  await getMovie();
+});
+
+
+document.querySelector('.favBtn').addEventListener('click', openNav);
+document.querySelector('.close').addEventListener('click', function () {
+  document.querySelector(".favorites").style.visibility = 'hidden';
+});
+
+
+getMovie();
+renderFavorites();
+genreFunction();
+
+
+function attachShareEventListeners() {
+  document.querySelectorAll(".share-button").forEach((btn) => {
+    btn.addEventListener("click", async function () {
+      const movieId = this.dataset.movieId;
+      const movie = favorites.find(m => m.id === parseInt(movieId)) || await fetchMovieById(movieId);
+      
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: movie.title,
+            text: `Check out this movie: ${movie.title}`,
+            url: `https://www.themoviedb.org/movie/${movie.id}`
+          });
+          console.log("Movie shared successfully!");
+        } catch (error) {
+          console.error("Error sharing movie:", error);
+        }
+      } else {
+        const shareUrl = `https://www.themoviedb.org/movie/${movie.id}`;
+        copyToClipboard(shareUrl);
+        alert("Link copied to clipboard!");
+      }
+    });
+  });
+}
+
+
+async function fetchMovieById(movieId) {
+  try {
+    const { data } = await axios(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`);
+    return data;
+  } catch (error) {
+    console.error("Error fetching movie details:", error);
+  }
+}
+
+
+function copyToClipboard(text) {
+  const tempInput = document.createElement("input");
+  document.body.appendChild(tempInput);
+  tempInput.value = text;
+  tempInput.select();
+  document.execCommand("copy");
+  document.body.removeChild(tempInput);
+}
+
+
+
+
+
+
+
+  
